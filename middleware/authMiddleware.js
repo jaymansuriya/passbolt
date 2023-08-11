@@ -13,10 +13,9 @@ const requireAuth = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
       if (err) {
-        console.log("auth error : " + err.message);
         res.status(401).json({ error: err.message });
       } else {
-        console.log(decodedToken);
+        logger.log('info', decodedToken);
         next();
       }
     });

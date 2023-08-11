@@ -2,6 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const handleErrors = require("../helpers/errorHandler");
 const createToken = require("../helpers/jwtHelper");
+const logger = require("../helpers/logger");
 
 const signup = async (req, res) => {
   const { email, password } = req.body;
@@ -12,6 +13,7 @@ const signup = async (req, res) => {
     res.status(201).json({ access_token: token });
   } catch (err) {
     const errors = handleErrors(err);
+    logger.log('error', err);
     res.status(400).json({ errors });
   }
 };
@@ -24,7 +26,7 @@ const login = async (req, res) => {
     const token = createToken(user._id);
     res.status(200).json({ access_token: token });
   } catch (err) {
-    console.error(err);
+    logger.log('error', err);
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
