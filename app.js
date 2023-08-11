@@ -21,7 +21,7 @@ async function main() {
     logger.log("info", `Server running on port ${PORT}`);
   });
 }
-main();
+
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
@@ -39,3 +39,5 @@ app.get("/api/v1/users", requireAuth, (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+main();
