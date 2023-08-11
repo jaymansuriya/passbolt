@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 // connect to db
-async function connectToDatabase() {
+async function main() {
   await mongoose
     .connect(process.env.DB_URI, {
       useUnifiedTopology: true,
@@ -17,8 +17,11 @@ async function connectToDatabase() {
     })
     .then(() => logger.log("info", "Connected to database"))
     .catch((err) => logger.log("error", err));
+  app.listen(PORT, () => {
+    logger.log("info", `Server running on port ${PORT}`);
+  });
 }
-connectToDatabase();
+main();
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
@@ -36,7 +39,3 @@ app.get("/api/v1/users", requireAuth, (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  logger.log("info", `Server running on port ${PORT}`);
-});
