@@ -22,9 +22,9 @@ async function main() {
   });
 }
 
-
 // Import routes
 const authRoutes = require("./routes/authRoutes");
+const folderRoutes = require("./routes/folderRoutes");
 
 // Middlewares
 app.use(express.json());
@@ -32,11 +32,8 @@ app.use(cors());
 
 // route Middlewares
 app.use("/api/v1/auth", authRoutes);
-app.get("/api/v1/users", requireAuth, (req, res) => {
-  res.json({
-    message: "Users",
-  });
-});
+app.use("/api/v1/folders", requireAuth, folderRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 
