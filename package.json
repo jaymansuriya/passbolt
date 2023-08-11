@@ -1,0 +1,32 @@
+{
+  "name": "securebits",
+  "version": "1.0.0",
+  "description": "app for password manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaymansuriya/Securebits.git"
+  },
+  "author": "jay mansuriya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaymansuriya/Securebits/issues"
+  },
+  "homepage": "https://github.com/jaymansuriya/Securebits#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.2",
+    "validator": "^13.11.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
