@@ -35,7 +35,7 @@ const updateFolder = async (req, res) => {
     const folder = await Folder.findById(folderId);
 
     if (!folder) {
-      return res.status(404).json({ error: "Folder not found" });
+      return res.status(400).json({ error: "Folder not found" });
     }
 
     if (folder.uid.toString() !== req.userId) {
@@ -59,7 +59,7 @@ const deleteFolder = async (req, res) => {
     const folder = await Folder.findById(folderId);
 
     if (!folder) {
-      return res.status(404).json({ error: "Folder not found" });
+      return res.status(400).json({ error: "Folder not found" });
     }
 
     if (folder.uid.toString() !== req.userId) {
