@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const logger = require("../helpers/logger");
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const requireAuth = (req, res, next) => {
         res.status(401).json({ error: err.message });
       } else {
         logger.log('info', decodedToken);
+        req.userId = decodedToken.id;
         next();
       }
     });
