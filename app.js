@@ -33,11 +33,7 @@ app.use(cors());
 // route Middlewares
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/folders", requireAuth, folderRoutes);
-app.get("/api/v1/users", requireAuth, (req, res) => {
-  res.json({
-    message: "Users",
-  });
-});
+
 
 const PORT = process.env.PORT || 3000;
 
