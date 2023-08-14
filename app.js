@@ -25,6 +25,7 @@ async function main() {
 // Import routes
 const authRoutes = require("./routes/authRoutes");
 const folderRoutes = require("./routes/folderRoutes");
+const vaultRoutes = require("./routes/vaultRoutes");
 
 // Middlewares
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use(cors());
 // route Middlewares
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/folders", requireAuth, folderRoutes);
+app.use("/api/v1/vaults", requireAuth, vaultRoutes);
 
 
 const PORT = process.env.PORT || 3000;
