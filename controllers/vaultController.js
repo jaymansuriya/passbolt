@@ -1,5 +1,4 @@
 const Vault = require("../models/Vault");
-const bcrypt = require("bcrypt");
 
 const getAllVaultByUser = async (req, res) => {
   try {
@@ -11,31 +10,16 @@ const getAllVaultByUser = async (req, res) => {
   }
 };
 
-const getAllVaultsInFolder = async (req, res) => {
-  try {
-    const userId = req.userId;
-    const folderId = req.params.folderId;
-    const vaults = await Vault.find({ uid: userId, fid: folderId });
-    res.status(200).json(vaults);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 const addVault = async (req, res) => {
   try {
     const userId = req.userId;
     const { name, username, password, folderId } = req.body;
-    const salt = await bcrypt.genSalt();
-    const encryptedUsername = await bcrypt.hash(username, salt);
-    const encryptedPassword = await bcrypt.hash(password, salt);
-
     const vault = new Vault({
       name,
       uid: userId,
       fid: folderId,
-      username: encryptedUsername,
-      password: encryptedPassword,
+      username: username,
+      password: password,
     });
 
     await vault.save();
@@ -59,14 +43,10 @@ const updateVault = async (req, res) => {
       return res.status(403).json({ error: "Permission denied" });
     }
 
-    const salt = await bcrypt.genSalt();
-    const encryptedUsername = await bcrypt.hash(username, salt);
-    const encryptedPassword = await bcrypt.hash(password, salt);
-
     vault.name = name;
     vault.fid = folderId;
-    vault.username = encryptedUsername;
-    vault.password = encryptedPassword;
+    vault.username = username;
+    vault.password = password;
 
     const updatedVault = await vault.save();
     res.status(200).json(updatedVault);
