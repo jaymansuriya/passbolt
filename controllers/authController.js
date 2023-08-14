@@ -5,10 +5,10 @@ const createToken = require("../helpers/jwtHelper");
 const logger = require("../helpers/logger");
 
 const signup = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, userName, firstName, lastName } = req.body;
 
   try {
-    const user = await User.create({ email, password });
+    const user = await User.create({ email, password, firstName, lastName, userName });
     const token = createToken(user._id);
     res.status(201).json({ access_token: token });
   } catch (err) {
@@ -19,10 +19,10 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { userName, password } = req.body;
 
   try {
-    const user = await User.login(email, password);
+    const user = await User.login(userName, password);
     const token = createToken(user._id);
     res.status(200).json({ access_token: token });
   } catch (err) {
