@@ -1,4 +1,5 @@
 const Folder = require("../models/Folder");
+const Vault = require("../models/Vault");
 
 const getAllFoldersByUser = async (req, res) => {
   try {
@@ -65,6 +66,9 @@ const deleteFolder = async (req, res) => {
     if (folder.uid.toString() !== req.userId) {
       return res.status(403).json({ error: "Permission denied" });
     }
+
+    // Delete associated vaults before deleting the folder
+    await Vault.deleteMany({ fid: folderId }); // Delete all vaults with matching folderId
 
     await Folder.findByIdAndDelete(folderId);
     res.status(204).end();
