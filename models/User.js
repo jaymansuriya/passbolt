@@ -15,6 +15,19 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please enter a password"],
     minlength: [6, "Minimum password length is 6 characters"],
   },
+  firstName: {
+    type: String,
+    required: [true, "Please enter a first name"],
+  },
+  lastName: {
+    type: String,
+    required: [true, "Please enter a last name"],
+  },
+  userName: {
+    type: String,
+    required: [true, "Please enter a username"],
+    unique: true,
+  }
 });
 
 // fire a function before doc saved to db
@@ -25,8 +38,8 @@ userSchema.pre("save", async function (next) {
 });
 
 // static method to login user
-userSchema.statics.login = async function (email, password) {
-  const user = await this.findOne({ email });
+userSchema.statics.login = async function (userName, password) {
+  const user = await this.findOne({ userName });
   if (user) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
@@ -34,7 +47,7 @@ userSchema.statics.login = async function (email, password) {
     }
     throw Error("incorrect password");
   }
-  throw Error("incorrect email");
+  throw Error("incorrect username");
 };
 
 const User = mongoose.model("user", userSchema);

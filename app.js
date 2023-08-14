@@ -26,6 +26,7 @@ async function main() {
 const authRoutes = require("./routes/authRoutes");
 const folderRoutes = require("./routes/folderRoutes");
 const vaultRoutes = require("./routes/vaultRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 // Middlewares
 app.use(express.json());
@@ -35,6 +36,7 @@ app.use(cors());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/folders", requireAuth, folderRoutes);
 app.use("/api/v1/vaults", requireAuth, vaultRoutes);
+app.use("/api/v1/users", requireAuth, userRoutes);
 
 
 const PORT = process.env.PORT || 3000;
