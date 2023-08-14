@@ -22,9 +22,16 @@ async function main() {
   });
 }
 
+<<<<<<< HEAD
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
+=======
+// Import routes
+const authRoutes = require("./routes/authRoutes");
+const folderRoutes = require("./routes/folderRoutes");
+const vaultRoutes = require("./routes/vaultRoutes");
+>>>>>>> dev
 
 // Middlewares
 app.use(express.json());
@@ -32,6 +39,7 @@ app.use(cors());
 
 // route Middlewares
 app.use("/api/v1/auth", authRoutes);
+<<<<<<< HEAD
 app.get("/api/v1/users", requireAuth, (req, res) => {
   res.json({
     message: "Users",
@@ -41,3 +49,12 @@ app.get("/api/v1/users", requireAuth, (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 main();
+=======
+app.use("/api/v1/folders", requireAuth, folderRoutes);
+app.use("/api/v1/vaults", requireAuth, vaultRoutes);
+
+
+const PORT = process.env.PORT || 3000;
+
+main();
+>>>>>>> dev
