@@ -18,11 +18,11 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.userId;
-    const { firstName, lastName, username, password, email } = req.body;
+    const { firstn_ame, last_name, username, password, email } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { firstName, lastName, username, password, email },
+      { firstn_ame, last_name, username, password, email },
       { new: true, projection: { password: 0, _id: 0, __v: 0 } },
     );
 

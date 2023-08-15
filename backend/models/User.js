@@ -15,15 +15,15 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please enter a password"],
     minlength: [6, "Minimum password length is 6 characters"],
   },
-  firstName: {
+  first_name: {
     type: String,
     required: [true, "Please enter a first name"],
   },
-  lastName: {
+  last_name: {
     type: String,
     required: [true, "Please enter a last name"],
   },
-  userName: {
+  username: {
     type: String,
     required: [true, "Please enter a username"],
     unique: true,
