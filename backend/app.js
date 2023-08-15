@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const { requireAuth } = require("./middleware/authMiddleware");
 const logger = require("./helpers/logger");
+const rateLimit = require("express-rate-limit");
 
 dotenv.config();
 const app = express();
@@ -29,15 +30,25 @@ const vaultRoutes = require("./routes/vaultRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 // Middlewares
+const limiter =rateLimit({
+  max: 2,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests, please try again later"
+});
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+app.use("/api",limiter);
+
 
 // route Middlewares
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/folders", requireAuth, folderRoutes);
 app.use("/api/v1/vaults", requireAuth, vaultRoutes);
 app.use("/api/v1/users", requireAuth, userRoutes);
-
 
 const PORT = process.env.PORT || 3000;
 
