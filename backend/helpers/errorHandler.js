@@ -7,7 +7,7 @@ const handleErrors = (err) => {
 
   // incorrect username
   if (err.message === "incorrect username") {
-    errors.userName = "username you have entered is not registered!";
+    errors.username = "username you have entered is not registered!";
   }
   //incorrect password
   if (err.message === "incorrect password") {
@@ -16,7 +16,7 @@ const handleErrors = (err) => {
 
   // duplicate error
   if (err.code === 11000) {
-    errors.userName = `${_.get(_.keys(err.keyPattern), "0", "")} you have entered is already registered!`;
+    errors.user = `${_.get(_.keys(err.keyPattern), "0", "")} you have entered is already registered!`;
     return errors;
   }
 
