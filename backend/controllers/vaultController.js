@@ -13,11 +13,11 @@ const getAllVaultByUser = async (req, res) => {
 const addVault = async (req, res) => {
   try {
     const userId = req.userId;
-    const { name, username, password, folderId } = req.body;
+    const { name, username, password, fid } = req.body;
     const vault = new Vault({
       name,
       uid: userId,
-      fid: folderId,
+      fid: fid,
       username: username,
       password: password,
     });
@@ -32,7 +32,7 @@ const addVault = async (req, res) => {
 const updateVault = async (req, res) => {
   try {
     const vaultId = req.params.vaultId;
-    const { name, username, password, folderId } = req.body;
+    const { name, username, password, fid } = req.body;
     const vault = await Vault.findById(vaultId);
 
     if (!vault) {
@@ -44,7 +44,7 @@ const updateVault = async (req, res) => {
     }
 
     vault.name = name;
-    vault.fid = folderId;
+    vault.fid = fid;
     vault.username = username;
     vault.password = password;
 
