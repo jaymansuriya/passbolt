@@ -40,7 +40,7 @@ const limiter = rateLimit({
 
 
 let corsOptions = {
-    origin: 'https://passbolt.netlify.app/',
+    origin: 'https://passbolt.netlify.app',
 };
 
 app.use(express.json());
