@@ -90,7 +90,6 @@ function User(props) {
                             transformOrigin={{ vertical: "top", horizontal: "center" }}
                             getContentAnchorEl={null}
                         >
-                            <MenuItem onClick={() => { handleClose(); props.history.push("/import-export") }}><ImportExportIcon /> Import/Export</MenuItem>
                             <MenuItem onClick={() => { handleClose(); props.history.push("/analyze") }}><LockOutlinedIcon /> Analyze</MenuItem>
                             <MenuItem onClick={() => { handleClose(); props.history.push("/settings") }}><SettingsIcon /> Settings</MenuItem>
                             <Divider />
