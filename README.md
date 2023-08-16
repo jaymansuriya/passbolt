@@ -7,7 +7,7 @@ The database used is MongoDB Atlas.
 
 ## Live Demo
 
-Check out the live demo of the Password Manager: [Demo Link](https://passbolt.netlify.app/)
+Check out the live demo of the PassBolt: [Demo Link](https://passbolt.netlify.app/)
 
 ## Features
 
