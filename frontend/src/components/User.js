@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
-import ImportExportIcon from '@material-ui/icons/ImportExport';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import LoginForm from './Forms/LoginForm';
 import SignupForm from './Forms/SignupForm';
