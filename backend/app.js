@@ -35,8 +35,20 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1hr
   message: "Too many requests, please try again later",
 });
+
+let whitelist = ["https://passbolt.netlify.app/", "http://localhost:3000"];
+let corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/api", limiter);
 
 // route Middlewares
