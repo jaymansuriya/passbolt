@@ -95,7 +95,6 @@ const FullName = withFormik({
                 props.displayError({ code: 204, msg: "Your account has been Deleted." })
             })
             .catch(res => {
-                console.log(res.response)
                 if (res.response.status === 500) {
                     props.displayError({ code: res.response.status, msg: "Server is Unreachable. Please try again later." })
                 }

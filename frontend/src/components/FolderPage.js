@@ -34,7 +34,6 @@ function FolderPage(props) {
 
     const [dialog, setDialog] = useState(0);
     const openDialog = id => {
-        console.log("editing", id)
         setDialog(id)
     };
     const closeDialog = () => setDialog(0);

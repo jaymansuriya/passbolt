@@ -60,7 +60,6 @@ export const editData = (url, data) => {
 }
 
 export const deleteData = (url, data) => {
-    console.log(data)
     const token = store.getState().token
     return axios.delete(`${BACKEND_URL}/api/v1/${url}`, {
         headers: {

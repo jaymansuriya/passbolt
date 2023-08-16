@@ -43,7 +43,6 @@ export const fetchUser = token => dispatch => {
             dispatch({ type: FETCH_USER.SUCCESS, payload: res.data })
         })
         .catch(res => {
-            console.log(res.response)
             if (res.response.status === 500) {
                 dispatch(displayError({ code: res.response.status, msg: "Server is Unreachable. Please try again later." }))
             }
@@ -56,7 +55,6 @@ export const fetchFolders = token => dispatch => {
             dispatch({ type: FETCH_FOLDERS.SUCCESS, payload: res.data })
         })
         .catch(res => {
-            console.log(res.response)
             if (res.response.status === 500) {
                 dispatch(displayError({ code: res.response.status, msg: "Server is Unreachable. Please try again later." }))
             }
@@ -74,7 +72,6 @@ export const fetchVaults = token => dispatch => {
             dispatch({ type: FETCH_VAULTS.SUCCESS, payload: data })
         })
         .catch(res => {
-            console.log(res.response)
             if (res.response.status === 500) {
                 dispatch(displayError({ code: res.response.status, msg: "Server is Unreachable. Please try again later." }))
             }
@@ -119,7 +116,6 @@ export const addFolder = data => dispatch => {
 }
 
 export const editFolder = data => dispatch => {
-    console.log("editFolder action", data)
     dispatch({ type: EDIT_FOLDER.SUCCESS, payload: data })
 }
 

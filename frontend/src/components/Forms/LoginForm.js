@@ -70,7 +70,6 @@ const LoginForm = withFormik({
         
         login(values.username, values.password)
             .then(res => {
-                console.log(res)
                 props.loginUser(values.username, values.password, res.data.access_token)
                 resetForm()
                 props.onClose()

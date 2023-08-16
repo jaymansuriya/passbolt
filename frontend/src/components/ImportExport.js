@@ -85,7 +85,6 @@ function ImportExport(props) {
                 s.vaults.map(v => new vault(v))
                 props.importFolders(s.folders, s.vaults)
             } catch (e) {
-                console.log(e)
                 props.displayError({ "code": 500, msg: "Import Failed due to File Error." })
             }
         }
