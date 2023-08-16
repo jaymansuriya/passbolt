@@ -11,16 +11,18 @@ const app = express();
 
 // connect to db
 async function main() {
-  await mongoose
-    .connect(process.env.DB_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    })
-    .then(() => logger.log("info", "Connected to database"))
-    .catch((err) => logger.log("error", err));
-  app.listen(PORT, () => {
-    logger.log("info", `Server running on port ${PORT}`);
-  });
+    await mongoose
+        .connect(
+            process.env.DB_URI, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        })
+        .then(() => logger.log("info", "Connected to database"))
+        .catch((err) => logger.log("error", err));
+        
+    app.listen(PORT, () => {
+        logger.log("info", `Server running on port ${PORT}`);
+    });
 }
 
 // Import routes
@@ -31,20 +33,20 @@ const userRoutes = require("./routes/userRoutes");
 
 // Middlewares
 const limiter = rateLimit({
-  max: 500,
-  windowMs: 60 * 60 * 1000, // 1hr
-  message: "Too many requests, please try again later",
+    max: 500,
+    windowMs: 60 * 60 * 1000, // 1hr
+    message: "Too many requests, please try again later",
 });
 
 let whitelist = ["https://passbolt.netlify.app/", "http://localhost:3000"];
 let corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
 };
 
 app.use(express.json());
