@@ -60,7 +60,6 @@ const deleteUser = async (req, res) => {
 const updatePassword = async (req, res) => {
   try {
     const { current_password, new_password, re_new_password } = req.body;
-    console.log(new_password.length + " password");
     if (new_password.length < 6) {
       return res
         .status(400)
@@ -81,9 +80,7 @@ const updatePassword = async (req, res) => {
     }
 
     user.password = new_password;
-    console.log("Before DB================",user.password);
     await user.save();
-    console.log("After DB===============",user.password);
 
     return res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
